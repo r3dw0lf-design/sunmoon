@@ -1,0 +1,25 @@
+name = "sun-and-moon"
+main = "src/worker.js"
+compatibility_date = "2025-06-01"
+compatibility_flags = ["nodejs_compat"]
+
+[assets]
+directory = "./public"
+binding = "ASSETS"
+run_worker_first = ["/api/*"]
+
+# No database_id on purpose: wrangler creates the D1 database for you on the first deploy.
+[[d1_databases]]
+binding = "DB"
+database_name = "sunmoon"
+
+[observability.logs]
+enabled = true
+head_sampling_rate = 1
+invocation_logs = true
+persist = true
+
+[observability.traces]
+enabled = false
+head_sampling_rate = 1
+persist = true
